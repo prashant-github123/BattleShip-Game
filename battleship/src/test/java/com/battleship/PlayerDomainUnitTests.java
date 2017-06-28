@@ -24,6 +24,7 @@ public class PlayerDomainUnitTests {
 	private Game game;
 	private int gameID;
 	private Ship newPlayerShip;
+	private Player secondPlayer;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -34,6 +35,7 @@ public class PlayerDomainUnitTests {
 		gameID = game.getGameID();
 		newPlayerShip = new Ship();
 		
+		secondPlayer = new Player(playerName);	
 	}
 
 	@Test
@@ -84,5 +86,21 @@ public class PlayerDomainUnitTests {
 		}
 		else
 			assertFalse(true);		
+	}
+	
+	
+	@Test
+	public void testPlayerForEqualsAndHash() {
+
+		if (!newPlayer.equals(secondPlayer)) {
+			assertTrue(newPlayer.getPlayerID() != secondPlayer.getPlayerID());
+		} else
+			assertFalse(true);
+		
+		if (newPlayer.hashCode() != secondPlayer.hashCode()) {
+			assertTrue(newPlayer.getPlayerID() != secondPlayer.getPlayerID());
+		} else
+			assertFalse(true);
+		
 	}
 }
