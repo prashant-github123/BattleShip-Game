@@ -1,4 +1,4 @@
-package com.battleship.integrationtests;
+package com.battleship.tests.interfaces;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -19,12 +19,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.battleship.BattleshipApplication;
 import com.battleship.application.RegistrationService;
+import com.battleship.application.util.GenericUtil;
 import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.handling.InvalidPlayerException;
 import com.battleship.domain.model.player.Player;
-import com.battleship.BattleshipApplication;
-import com.battleship.interfaces.util.GenericUtil;
 import com.battleship.interfaces.web.BattleShipController;
 
 

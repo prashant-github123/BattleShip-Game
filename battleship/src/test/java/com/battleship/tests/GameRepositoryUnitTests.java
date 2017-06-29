@@ -1,4 +1,4 @@
-package com.battleship;
+package com.battleship.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.battleship.BattleshipApplication;
 import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.InvalidPlayerException;

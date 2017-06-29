@@ -1,4 +1,4 @@
-package com.battleship;
+package com.battleship.tests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.battleship.BattleshipApplication;
 import com.battleship.application.impl.RegistrationServiceImpl;
 import com.battleship.domain.model.game.BattleShipGameRepository;
 
