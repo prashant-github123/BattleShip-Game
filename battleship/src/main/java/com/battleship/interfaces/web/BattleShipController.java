@@ -3,9 +3,6 @@
  */
 package com.battleship.interfaces.web;
 
-import static com.battleship.application.util.ApplicationConstants.GAME_OVER_STATUS;
-import static com.battleship.application.util.ApplicationConstants.TURN_STATUS_FALSE;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 

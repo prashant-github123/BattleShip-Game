@@ -1,9 +1,5 @@
 package com.battleship.application.impl;
 
-import static com.battleship.application.util.ApplicationConstants.GAME_OVER_STATUS;
-import static com.battleship.application.util.ApplicationConstants.TURN_STATUS_FALSE;
-import static com.battleship.application.util.ApplicationConstants.TURN_STATUS_TRUE;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,6 @@ import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * This class is an implementation of <code>PlayGameService</code> and has
@@ -58,11 +53,11 @@ public class PlayGameServiceImpl implements PlayGameService {
 		
 		for (Player player : game.getGamePlayers()) {
 			if (player.getPlayerID() != playerId) {
-				if(player.getShip().isDestroyed()){
-					isGameOver = true;
-				}
 				turnStatusDTO.setCoordinates(player.getShip().getHitOrMissCoordinates());
-				break;
+			}
+			
+			if(player.getShip().isDestroyed()){
+				isGameOver = true;
 			}
 		}
 		
