@@ -11,7 +11,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.battleship.BattleshipApplication;
 import com.battleship.application.impl.RegistrationServiceImpl;
-import com.battleship.domain.model.game.BattleShipGameRepository;
+import com.battleship.infrastructure.BattleShipGameRepository;
+import com.battleship.infrastructure.impl.BattleShipGameRepositoryImpl;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +21,7 @@ public class RegistrationServiceUnitTests {
 	
 	//@Mock  Disabling this mock as MOckito is unable to inject this mock by calling default constructor.
 	@InjectMocks
-	private BattleShipGameRepository gameRepository;
+	private BattleShipGameRepository gameRepository  = new BattleShipGameRepositoryImpl();
 	
 	@InjectMocks
 	private RegistrationServiceImpl service;

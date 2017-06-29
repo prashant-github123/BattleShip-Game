@@ -7,12 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.battleship.application.RegistrationService;
-import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.GameInitiationException;
 import com.battleship.domain.model.handling.InvalidPlayerException;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.infrastructure.BattleShipGameRepository;
 
 
 /**

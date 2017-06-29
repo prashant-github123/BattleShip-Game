@@ -9,13 +9,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.battleship.application.PrepareGroundService;
-import com.battleship.domain.model.game.BattleShipGameRepository;
+import com.battleship.application.util.GenericUtil;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.handling.NoPlayerFoundException;
 import com.battleship.domain.model.player.Player;
 import com.battleship.domain.model.ship.Ship;
-import com.battleship.application.util.GenericUtil;
+import com.battleship.infrastructure.BattleShipGameRepository;
 
 /**
  * This class is an implementation of <code>PrepareGroundService</code> and has

@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import com.battleship.application.PlayGameService;
 import com.battleship.application.dto.HitOpponentShipUpdateDTO;
 import com.battleship.application.dto.TurnStatusDTO;
-import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.infrastructure.BattleShipGameRepository;
 
 /**
  * This class is an implementation of <code>PlayGameService</code> and has

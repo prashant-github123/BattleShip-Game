@@ -12,11 +12,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.battleship.BattleshipApplication;
-import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.InvalidPlayerException;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.infrastructure.BattleShipGameRepository;
+import com.battleship.infrastructure.impl.BattleShipGameRepositoryImpl;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +25,7 @@ import com.battleship.domain.model.player.Player;
 public class GameRepositoryUnitTests {
 
 	@InjectMocks
-	private BattleShipGameRepository gameRepository;
+	private BattleShipGameRepository gameRepository = new BattleShipGameRepositoryImpl();
 
 	@Before
 	public void setUp() throws Exception {

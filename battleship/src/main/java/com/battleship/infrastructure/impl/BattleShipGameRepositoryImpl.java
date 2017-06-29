@@ -1,23 +1,25 @@
-package com.battleship.domain.model.game;
+package com.battleship.infrastructure.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.infrastructure.BattleShipGameRepository;
 
 /**
  * This repository manages <code>Game</code> instances.
- * This repository can be replaced with enterprise level solution with Database or Caching.
+ * This repository can be replaced JPA/Database Implementation.
  * 
  * 
  * @author pmalsh
  *
  */
 @Component
-public class BattleShipGameRepository{
+public class BattleShipGameRepositoryImpl implements BattleShipGameRepository {
 
 	/**
 	 * This is LinkedList repository for easy retrieval latest available game and other functions.
@@ -27,18 +29,14 @@ public class BattleShipGameRepository{
 	
 	
 	//Changing this constructor from private to public as Mockito is unable to call this default constructor while creating mock object.
-	
-	private BattleShipGameRepository(){
-		allGames = new LinkedList<>();	
+	//Only for testing purpose until solution available.
+	public BattleShipGameRepositoryImpl(){
+		allGames = new LinkedList<Game>();	
 	}
 	
-	private BattleShipGameRepository(int i){
-		allGames = new LinkedList<>();	
-	}
-	
+
 	/**
-	 * This method retrieves latest Game ID if available for play.
-	 * If there is no game available the it creates new game and provides new Game ID.
+	 * This implements retrieval of latest available game service.
 	 * 
 	 * @return Game ID 
 	 */
@@ -55,8 +53,7 @@ public class BattleShipGameRepository{
 	}
 	
 	/**
-	 * This method returns Game for provided Game ID.
-	 * If Game is not available, NULL will be returned.
+	 * This implements retrieval of <code>Game</code> by gameId.
 	 * 
 	 * @return <code>Game<code>
 	 */
@@ -71,7 +68,7 @@ public class BattleShipGameRepository{
 	}
 	
 	/**
-	 * This method adds player to the game if that game has less than 2 players.
+	 * This implements service to add players to the game if that game has less than 2 players.
 	 *  
 	 * @param player
 	 * @param gameID

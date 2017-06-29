@@ -22,9 +22,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.battleship.BattleshipApplication;
 import com.battleship.application.RegistrationService;
 import com.battleship.application.util.GenericUtil;
-import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.handling.InvalidPlayerException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.infrastructure.BattleShipGameRepository;
 import com.battleship.interfaces.web.BattleShipController;
 
 
@@ -37,7 +37,6 @@ public class GameControllerUnitTest {
 
     @InjectMocks
     private BattleShipController battleshipController;
-
     
     @Mock
     private RegistrationService service;
