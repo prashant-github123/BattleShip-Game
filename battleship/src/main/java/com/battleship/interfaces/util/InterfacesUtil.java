@@ -16,7 +16,7 @@ import org.springframework.validation.ObjectError;
  *
  */
 @Component
-public class GenericUtil {
+public class InterfacesUtil {
 	
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());

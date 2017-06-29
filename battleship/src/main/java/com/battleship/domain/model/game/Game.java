@@ -29,6 +29,13 @@ public class Game {
 	 */
 	private List<Player> gamePlayers;
 	
+	/**
+	 * This indicates whose turn is it to hit enemy ship.
+	 * 
+	 */
+	private int whoseTurnPlayerId;
+	
+	
 	public Game(){
 		super();
 		this.setGameID(autoIncrementGameID++);
@@ -53,6 +60,16 @@ public class Game {
 
 	public void setGamePlayers(List<Player> gamePlayers) {
 		this.gamePlayers = gamePlayers;
+	}
+
+
+	public int getWhoseTurnPlayerId() {
+		return whoseTurnPlayerId;
+	}
+
+
+	public void setWhoseTurnPlayerId(int whoseTurnPlayerId) {
+		this.whoseTurnPlayerId = whoseTurnPlayerId;
 	}
 	
 }

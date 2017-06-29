@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.battleship.application;
 
 import com.battleship.domain.model.game.Game;
@@ -11,7 +8,7 @@ import com.battleship.domain.model.player.Player;
 
 
 /**
- * This is registration service for new player.
+ * This is the Registration Service for new player.
  *  
  * @author amall3
  *

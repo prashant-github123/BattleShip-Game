@@ -10,11 +10,18 @@ public class Ship {
 		
 	private int shipID;
 	
-	private List<String> playerShipCoordinates;
+	private List<String> positionCoordinates;
+
+	private boolean isDestroyed;
+	
+	private List<String> hitOrMissCoordinates;
+	
 	
 	public Ship(){
 		this.setShipID(autoIncrementShipID++);
-		this.setPlayerShipCoordinates(new ArrayList<String>());
+		this.setPositionCoordinates(new ArrayList<String>());
+		this.setDestroyed(false);
+		this.setHitOrMissCoordinates(new ArrayList<String>());
 	}
 
 	public int getShipID() {
@@ -26,11 +33,27 @@ public class Ship {
 	}
 
 	public List<String> getPlayerShipCoordinates() {
-		return playerShipCoordinates;
+		return positionCoordinates;
 	}
 
-	public void setPlayerShipCoordinates(List<String> playerShipCoordinates) {
-		this.playerShipCoordinates = playerShipCoordinates;
+	public void setPositionCoordinates(List<String> positionCoordinates) {
+		this.positionCoordinates = positionCoordinates;
+	}
+
+	public boolean isDestroyed() {
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
+	}
+	
+	public List<String> getHitOrMissCoordinates() {
+		return hitOrMissCoordinates;
+	}
+
+	public void setHitOrMissCoordinates(List<String> hitOrMissCoordinates) {
+		this.hitOrMissCoordinates = hitOrMissCoordinates;
 	}
 		
 }

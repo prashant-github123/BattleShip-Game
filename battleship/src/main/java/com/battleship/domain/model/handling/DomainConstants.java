@@ -12,6 +12,8 @@ public class DomainConstants {
 
 	public static final String INVALID_PLAYER_OBJECT = "Player object is not created. Player name must be provided.";
 	
+	public static final String NO_PLAYER_FOUND = "Requested Player could not be found in the game.";
+	
 	public static final String INVALID_GAME_OBJECT = "Game object is not created. Players must be added to Game.";
 
 	public static final String ADD_PLAYER_SUCCESS_MSG = "New Player registered in system successfully with name ";
