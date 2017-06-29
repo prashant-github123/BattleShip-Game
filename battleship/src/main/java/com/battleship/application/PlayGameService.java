@@ -3,6 +3,9 @@
  */
 package com.battleship.application;
 
+import java.util.List;
+
+import com.battleship.application.dto.HitOpponentShipUpdateDTO;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 
 
@@ -35,5 +38,5 @@ public interface PlayGameService {
 	 * @throws NoGameAvailableException
 	 */
 
-	//HitOpponentShipUpdateResponse hitOpponentShipUpdateEvent(HitOpponentShipUpdateRequest hitOpponentShipUpdateRequest) throws NoGameAvailableException;
+	List<String> hitOpponentShipUpdateEvent(HitOpponentShipUpdateDTO hitOpponentShipUpdate) throws NoGameAvailableException;
 }

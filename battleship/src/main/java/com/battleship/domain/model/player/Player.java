@@ -43,7 +43,7 @@ public class Player {
 		this.setPlayerName(lPlayerName);
 	}
 
-	public long getPlayerID() {
+	public int getPlayerID() {
 		return playerID;
 	}
 

@@ -4,6 +4,9 @@ import static com.battleship.application.util.ApplicationConstants.GAME_OVER_STA
 import static com.battleship.application.util.ApplicationConstants.TURN_STATUS_FALSE;
 import static com.battleship.application.util.ApplicationConstants.TURN_STATUS_TRUE;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +14,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.battleship.application.PlayGameService;
+import com.battleship.application.dto.HitOpponentShipUpdateDTO;
 import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
+import com.battleship.interfaces.dto.HitOpponentShipUpdateRequestDTO;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
@@ -76,46 +81,36 @@ public class PlayGameServiceImpl implements PlayGameService {
 	 * @return List of hit coordinates   
 	 * @throws NoGameAvailableException 
 	 * @throws NumberFormatException 
-	 *//*
-	public List<String> hitOpponentShipUpdateEvent(HitOpponentShipUpdateDTO hitOpponentShipUpdateDTO) throws NoGameAvailableException {
+	 */
+
+	public List<String> hitOpponentShipUpdateEvent(HitOpponentShipUpdateDTO hitOpponentShipUpdateDTO) throws NoGameAvailableException{
 
 		logger.info("Inside PlayGameServiceImpl.processGame()");
-		List<String> coordinateList = new List<String>();
+		List<String> coordinateList = null;
 
 		Game game = gameRepository.getGameByID(Integer.valueOf(hitOpponentShipUpdateDTO.getGameId()));
+		for (Player player : game.getGamePlayers()) {
 
+			if (Integer.parseInt(hitOpponentShipUpdateDTO.getPlayerId()) != player.getPlayerID()) {
+				game.setWhoseTurnPlayerId(player.getPlayerID());
+
+				coordinateList = player.getShip().getHitOrMissCoordinates();
+				if (null == coordinateList) {
+					coordinateList = new ArrayList<>();
+				}
+				coordinateList.add(hitOpponentShipUpdateDTO.getHitCoordinate());
+				player.getShip().setHitOrMissCoordinates(coordinateList);
+			}
+		}
+		
 		if (hitOpponentShipUpdateDTO.isGameOver()) {
-
 			for (Player player : game.getGamePlayers()) {
 				if (player.getPlayerID() != Integer.parseInt(hitOpponentShipUpdateDTO.getPlayerId())) {
 					player.getShip().setDestroyed(Boolean.TRUE);
+					return coordinateList;
 				}
-			}
-			response.setGameOver(Boolean.TRUE);
-		} else if (ApplicationConstants.HIT.equalsIgnoreCase(hitOpponentShipUpdateDTO.getHitOrMiss())
-				|| ApplicationConstants.MISS.equalsIgnoreCase(hitOpponentShipUpdateDTO.getHitOrMiss())) {
-			
-			response.setGameOver(Boolean.FALSE);
-
-			for (Player player : game.getGamePlayers()) {
-
-				if (Integer.parseInt(hitOpponentShipUpdateDTO.getPlayerId()) != player.getPlayerID()) {
-					game.setWhoseTurnPlayerId(player.getPlayerID());
-
-					List<String> hitCoodinate = player.getShip().getHitOrMissCoordinates();
-					if (null == hitCoodinate) {
-						hitCoodinate = new ArrayList<>();
-					}
-					hitCoodinate.add(hitOpponentShipUpdateDTO.getHitCoordinate());
-					player.getShip().setHitOrMissCoordinates(hitCoodinate);
-					response.setOpponentHitCoordinates(hitCoodinate);
-				}
-			}
-		}
-		return response;
-	}*/
-
-			
+			}		 
+		} 
+		return coordinateList;
+	}
 }
-
-
