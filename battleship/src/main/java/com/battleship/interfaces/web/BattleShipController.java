@@ -29,6 +29,7 @@ import com.battleship.application.PlayGameService;
 import com.battleship.application.PrepareGroundService;
 import com.battleship.application.RegistrationService;
 import com.battleship.application.dto.HitOpponentShipUpdateDTO;
+import com.battleship.application.dto.TurnStatusDTO;
 import com.battleship.domain.model.handling.GameInitiationException;
 import com.battleship.domain.model.handling.InvalidPlayerException;
 import com.battleship.domain.model.handling.NoGameAvailableException;
@@ -196,31 +197,18 @@ public class BattleShipController {
 			return ResponseEntity.badRequest().body(util.getValidationErrors(errors));
 		}
 
-		
 		CheckTurnStatusResponseDTO checkTurnStatusResponseDTO = new CheckTurnStatusResponseDTO();
-		
 		try {
-			String turnStatus = playGameService.checkPlayersTurnOrGameOverStatus(
+			TurnStatusDTO turnStatusDTO = playGameService.checkPlayersTurnOrGameOverStatus(
 					Integer.parseInt(checkTurnStatusRequest.getGameId()), Integer.parseInt(checkTurnStatusRequest.getPlayerId()));
 			
-			if (turnStatus.equals(GAME_OVER_STATUS)) {
-				checkTurnStatusResponseDTO.setTurn(Boolean.FALSE);
-				checkTurnStatusResponseDTO.setGameOver(Boolean.TRUE);
-				
-			} else if (turnStatus.equals(TURN_STATUS_FALSE)) {
-				checkTurnStatusResponseDTO.setTurn(Boolean.FALSE);
-				checkTurnStatusResponseDTO.setGameOver(Boolean.FALSE);
-				
-			} else {
-				checkTurnStatusResponseDTO.setTurn(Boolean.TRUE);
-				checkTurnStatusResponseDTO.setGameOver(Boolean.FALSE);
-			}
+			if(null != turnStatusDTO)
+				BeanUtils.copyProperties(checkTurnStatusResponseDTO, turnStatusDTO);
 			logger.debug("[BattleShipController.checkTurnStatus()] : Response is :", checkTurnStatusResponseDTO);
 			
-		} catch (NumberFormatException | NoGameAvailableException e) {
+		} catch (NumberFormatException | NoGameAvailableException | IllegalAccessException | InvocationTargetException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
-		
 		return ResponseEntity.ok(checkTurnStatusResponseDTO);
 	}
 	

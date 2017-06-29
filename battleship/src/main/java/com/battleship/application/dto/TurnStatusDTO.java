@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.battleship.interfaces.dto;
+package com.battleship.application.dto;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author amall3
  *
  */
-public class CheckTurnStatusResponseDTO extends ResponseDTO {
+public class TurnStatusDTO {
 
 	private List<String> coordinates;
 

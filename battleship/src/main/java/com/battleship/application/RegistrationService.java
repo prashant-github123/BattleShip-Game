@@ -38,6 +38,6 @@ public interface RegistrationService {
 	 * @throws NoGameAvailableException 
 	 * @throws InvalidPlayerObject
 	 */
-	public Player registerNewPlayer(String Name) throws InvalidPlayerException, GameInitiationException, NoGameAvailableException;
+	public Player registerNewPlayer(String name) throws InvalidPlayerException, GameInitiationException, NoGameAvailableException;
 	
 }

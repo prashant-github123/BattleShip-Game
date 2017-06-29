@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 
 import com.battleship.application.PlayGameService;
 import com.battleship.application.dto.HitOpponentShipUpdateDTO;
+import com.battleship.application.dto.TurnStatusDTO;
 import com.battleship.domain.model.game.BattleShipGameRepository;
 import com.battleship.domain.model.game.Game;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 import com.battleship.domain.model.player.Player;
-import com.battleship.interfaces.dto.HitOpponentShipUpdateRequestDTO;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
@@ -49,9 +49,10 @@ public class PlayGameServiceImpl implements PlayGameService {
 	 * @throws NoGameAvailableException 
 	 * @throws NumberFormatException 
 	 */
-	public String checkPlayersTurnOrGameOverStatus(int gameId, int playerId) throws NoGameAvailableException {
+	public TurnStatusDTO checkPlayersTurnOrGameOverStatus(int gameId, int playerId) throws NoGameAvailableException {
 
 		logger.info("Inside PlayGameServiceImpl.checkPlayersTurnOrGameOverStatus()");
+		TurnStatusDTO turnStatusDTO = new TurnStatusDTO();
 		Game game = gameRepository.getGameByID(gameId);
 		boolean isGameOver = Boolean.FALSE;
 		
@@ -60,15 +61,24 @@ public class PlayGameServiceImpl implements PlayGameService {
 				if(player.getShip().isDestroyed()){
 					isGameOver = true;
 				}
+				turnStatusDTO.setCoordinates(player.getShip().getHitOrMissCoordinates());
+				break;
 			}
 		}
 		
 		if (isGameOver) {
-			return GAME_OVER_STATUS;
+			turnStatusDTO.setGameOver(isGameOver);
+			turnStatusDTO.setTurnStatus(Boolean.FALSE);
+			return turnStatusDTO;
+			
 		} else if(game.getWhoseTurnPlayerId() == playerId) {
-			return TURN_STATUS_TRUE;	
+			turnStatusDTO.setGameOver(isGameOver);
+			turnStatusDTO.setTurnStatus(Boolean.TRUE);
+			return turnStatusDTO;
 		}		
-		return TURN_STATUS_FALSE;
+		turnStatusDTO.setGameOver(isGameOver);
+		turnStatusDTO.setTurnStatus(Boolean.FALSE);
+		return turnStatusDTO;
 	}
 
 

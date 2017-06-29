@@ -29,11 +29,11 @@ public class BattleShipGameRepository{
 	//Changing this constructor from private to public as Mockito is unable to call this default constructor while creating mock object.
 	
 	private BattleShipGameRepository(){
-		allGames = new LinkedList<Game>();	
+		allGames = new LinkedList<>();	
 	}
 	
 	private BattleShipGameRepository(int i){
-		allGames = new LinkedList<Game>();	
+		allGames = new LinkedList<>();	
 	}
 	
 	/**

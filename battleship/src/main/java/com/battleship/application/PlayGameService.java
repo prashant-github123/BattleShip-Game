@@ -6,6 +6,7 @@ package com.battleship.application;
 import java.util.List;
 
 import com.battleship.application.dto.HitOpponentShipUpdateDTO;
+import com.battleship.application.dto.TurnStatusDTO;
 import com.battleship.domain.model.handling.NoGameAvailableException;
 
 
@@ -28,7 +29,7 @@ public interface PlayGameService {
 	 * @throws NoGameAvailableException 
 	 * @throws NumberFormatException 
 	 */
-	String checkPlayersTurnOrGameOverStatus(int gameId, int playerId) throws NoGameAvailableException;
+	TurnStatusDTO checkPlayersTurnOrGameOverStatus(int gameId, int playerId) throws NoGameAvailableException;
 	
 	
 	/**
