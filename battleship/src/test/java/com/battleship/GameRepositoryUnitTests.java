@@ -89,5 +89,33 @@ public class GameRepositoryUnitTests {
 			assertFalse(true);
 		}
 	}
+	
+	
+	@Test
+	public void testRejectExtraPlayerByGameID() {
+
+		int latestGameID = gameRepository.latestAvailableGame();
+		try {
+			gameRepository.addNewPlayerByGameID(new Player("Test"), latestGameID);
+			gameRepository.addNewPlayerByGameID(new Player("ABC"), latestGameID);
+			boolean success = gameRepository.addNewPlayerByGameID(new Player("EFG"), latestGameID);
+			assertTrue(!success);
+		} catch (NoGameAvailableException | InvalidPlayerException e) {
+			assertFalse(true);
+		}
+	}
+	
+	@Test
+	public void testLatestGameAvailable() {
+
+		int latestGameID = gameRepository.latestAvailableGame();
+		try {
+			gameRepository.addNewPlayerByGameID(new Player("Test"), latestGameID);
+			int gameId = gameRepository.latestAvailableGame();
+			assertTrue(latestGameID == gameId);
+		} catch (NoGameAvailableException | InvalidPlayerException e) {
+			assertFalse(true);
+		}
+	}
 
 }
